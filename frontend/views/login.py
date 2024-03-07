@@ -1,6 +1,7 @@
 from flet import *
 from utils.data import *
 from utils.colors import *
+from services.auth_services import login_user
 
 class Login(UserControl):
     def __init__(self, page: Page):
@@ -12,11 +13,16 @@ class Login(UserControl):
 
     def login(self, e):
         if self.username.content.value != "" and self.password.content.value != "":
-            if self.page.client_storage.contains_key("users"):
-                user_data = self.page.client_storage.get("users")
-                for user in user_data:
-                    if user["username"] == self.username.content.value and user["password"] == self.password.content.value:
-                        self.page.go("/dashboard")
+            username = self.username.content.value
+            password = self.password.content.value
+
+            login_result = login_user(username, password)
+            if login_result.get("success"):
+                self.page.go("/dashboard")
+            else:
+                error_message = login_result.get("message", "Login failed, please try again")
+        else:
+            pass
         
     def build(self):
         self.back_arrow = Container(

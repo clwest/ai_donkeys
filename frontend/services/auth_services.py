@@ -36,3 +36,20 @@ def signup_user(email, username, password):
         # Handle any errors that occur during the request
         print(f"An error occurred: {e}")
         return {"success": False, "message": str(e)}
+
+def login_user(username, password):
+    payload = {
+        "username": username,
+        "password": password          
+    }
+    # URL of the Flask backend's login endpoint
+    url = f"{os.getenv('FLASK_URL')}/users/login"
+    try:
+        response = requests.post(url, json=payload)
+        if response.status_code in [200, 201]:
+            data = response.json()
+            return {"success": True, "token": data.get("access_token")}
+        else:
+            return {"success": False, "message": "Login failed. Please try again."}
+    except Exception as e:
+        return {"success": False, "message": str(e)}

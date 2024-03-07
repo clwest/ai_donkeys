@@ -44,25 +44,6 @@ class SignUp(UserControl):
             pass
             # TODO: Handle errors
 
-    
-                # if self.page.client_storage.contains_key("users"):
-                #     # Adding new users  
-                #     user_data = self.page.client_storage.get("users")
-                #     user_data.append(user_instance)
-                #     self.page.client_storage.set("users", user_data)
-
-                #     # Adding accounts/wallets 
-                #     # Need to add to db
-                #     accounts_details = self.page.client_storage.get("wallet_address")
-                #     accounts_details[self.username.content.value] = user_instance["account_no"]
-                #     self.page.client_storage.set("wallet_address", accounts_details)
-                # else:
-                #     self.page.client_storage.set("users", [user_instance])
-                #     self.page.client_storage.set("wallet_address", {self.username.content.value : user_instance["account_no"]})
-
-                # print(self.page.client_storage.get("users"))
-                # print(self.page.client_storage.get("wallet_address"))
-                # self.page.go("/signup/success")
 
     def build(self):
         self.back_arrow=Container(
