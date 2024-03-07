@@ -8,7 +8,6 @@ def main(page: Page):
         "Oswald": FONT_URL
     }
     page.theme = Theme(font_family="Poppins")
-    page.bgcolor = SLATE
     
     def route_change(event : RouteChangeEvent):
         

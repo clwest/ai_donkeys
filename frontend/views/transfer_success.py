@@ -64,7 +64,7 @@ class TransferSuccess(UserControl):
                             on_click = self.transfer,         
                             style= TextStyle(
                                 size = 15,
-                                color= colors.GREEN_800,
+                                color= colors.SLATE,
                                 weight=FontWeight.W_500,
                                 ),
                             )

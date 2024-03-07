@@ -56,7 +56,7 @@ class SignUpSuccess(UserControl):
                 text_align=TextAlign.CENTER,
                 spans=[
                     TextSpan(
-                        text="Login Page",
+                        text="\nLogin Page",
                         style=TextStyle(
                             color=SLATE
                         ),

@@ -73,11 +73,14 @@ class OnBoarding(UserControl):
         )
 
         self.sign_in = Container(
+            alignment=alignment.center,
             content=Text("Have an account?",
             color=colors.WHITE,
+           
             spans=[
                 TextSpan(
-                    text="sign in",
+                    text="\nsign in",
+                    
                     style=TextStyle(
                         color=SLATE
                     ),
@@ -89,6 +92,7 @@ class OnBoarding(UserControl):
         self.back_arrow = Container(
             alignment=alignment.top_left,
             content= IconButton(
+            icon = icons.ARROW_BACK,
             visible=False,
             icon_color=colors.WHITE,
             on_click=self.back_home
@@ -139,7 +143,7 @@ class OnBoarding(UserControl):
             content=Column(
                 [
                     Container(
-                        bgcolor=colors.GREEN_400,
+                        bgcolor=SLATE,
                         border_radius=10,
                         height=50,
                         padding=5,
@@ -159,7 +163,7 @@ class OnBoarding(UserControl):
                         )
                     ),
                     Container(
-                        bgcolor=colors.GREEN_400,
+                        bgcolor=SLATE,
                         border_radius=10,
                         padding=5,
                         height=50,
