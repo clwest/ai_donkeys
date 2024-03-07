@@ -1,0 +1,90 @@
+[
+  {
+    "name": "Stable Diffusion v1.5",
+    "endpoint": "runwayml/stable-diffusion-v1-5"
+  },
+  {
+    "name": "Stable Diffusion v2-1",
+    "endpoint": "stabilityai/stable-diffusion-2-1"
+  },
+  {
+    "name": "CompVis Stable Diffusion v1.4",
+    "endpoint": "CompVis/stable-diffusion-v1-4"
+  },
+  {
+    "name": "Pixel Art XL",
+    "endpoint": "nerijs/pixel-art-xl"
+  },
+  {
+    "name": "Open Journey",
+    "endpoint": "prompthero/openjourney"
+  },
+  {
+    "name": "Dreamlike Photoreal 2.0",
+    "endpoint": "dreamlike-art/dreamlike-photoreal-2.0"
+  },
+  {
+    "name": "Animagine XL",
+    "endpoint": "Linaqruf/animagine-xl"
+  },
+  {
+    "name": "Anything Anime",
+    "endpoint": "Linaqruf/anything-v3.0"
+  },
+  {
+    "name": "Dream Shaper",
+    "endpoint": "Lykon/DreamShaper"
+  },
+  {
+    "name": "3D Render Style SDXL ('Prompt with 3d style, 3d or 3d render')",
+    "endpoint": "goofyai/3d_render_style_xl"
+  },
+  {
+    "name": "Crayon Style-SDXL LoRA",
+    "endpoint": "ostris/crayon_style_lora_sdxl"
+  },
+  {
+    "name": "SD PixelArt Spritesheet",
+    "endpoint": "Onodofthenorth/SD_PixelArt_SpriteSheet_Generator"
+  },
+  {
+    "name": "Open Journey v4",
+    "endpoint": "prompthero/openjourney-v4"
+  },
+  {
+    "name": "Dreamlike Aniem v1.0",
+    "endpoint": "dreamlike-art/dreamlike-anime-1.0"
+  },
+  {
+    "name": "Realistic Vision v1.4",
+    "endpoint": "SG161222/Realistic_Vision_V1.4"
+  },
+  {
+    "name": "Diffusion for Weebs",
+    "endpoint": "hakurei/waifu-diffusion"
+  },
+  {
+    "name": "Cyberpunk Anime Diffusion",
+    "endpoint": "DGSpitzer/Cyberpunk-Anime-Diffusion"
+  },
+  {
+    "name": "Mo Di Diffusion ('Use the tokens modern disney style')",
+    "endpoint": "nitrosocke/mo-di-diffusion"
+  },
+  {
+    "name": "Redshift Diffusion ('Use redshift style as prompt')",
+    "endpoint": "nitrosocke/redshift-diffusion-768"
+  },
+  {
+    "name": "Analog Diffusion",
+    "endpoint": "wavymulder/Analog-Diffusion"
+  },
+  {
+    "name": "Deliberate Diffusion",
+    "endpoint": "stablediffusionapi/deliberate111"
+  },
+  {
+    "name": "Unclip",
+    "endpoint": "stabilityai/stable-diffusion-2-1-unclip"
+  }
+]

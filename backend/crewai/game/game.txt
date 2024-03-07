@@ -1,0 +1,4 @@
+
+Shooter game where the player can shoot projectiles at enemines and move around the screen using the arrow keys.
+Enemies should appear at a reasonable pace and randomly increase the pace they appear over time
+so the game becomes more difficult.
