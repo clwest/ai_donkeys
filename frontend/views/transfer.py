@@ -8,21 +8,21 @@ class Transfer(UserControl):
         self.page = page
         super().__init__()
 
-    def dashboard(self, event):
+    def dashboard(self, e):
         self.page.go("/dashboard")
     
-    def transfer(self, event):
+    def transfer(self, e):
         self.page_controls.clear()
         self.page_controls.append(self.receiver_view)
         self.update()
         self.page.go("/transfer")
     
-    def account_number_update(self, event):
-        if len(event.control.value) == 19:
-            self.to_amount(event)
+    def account_number_update(self, e):
+        if len(e.control.value) == 19:
+            self.to_amount(e)
             self.update()
 
-    def to_amount(self, event):
+    def to_amount(self, e):
         self.page_controls.clear()
         self.page_controls.append(self.amount_view)
         self.update()

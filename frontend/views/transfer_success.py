@@ -8,7 +8,7 @@ class TransferSuccess(UserControl):
         self.page = page
         super().__init__()
     
-    def transfer(self, event):
+    def transfer(self, e):
         self.page.go("/transfer")
 
     def build(self):

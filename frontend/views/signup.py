@@ -1,6 +1,7 @@
 from flet import *
 from utils.data import *
 from utils.colors import *
+from services.auth_services import signup_user
 import random
 
 class SignUp(UserControl):
@@ -13,34 +14,55 @@ class SignUp(UserControl):
         print("click")
         self.page.go("/")
 
+
     def confirm(self, e):
+        # client_storage.clear is for testing only, should not be used due to the amout of data it deletes.
+        
         # self.page.client_storage.clear()
+        # Need error warnings for incorrect pw or duplicate username
         if self.email.content.value != "":
             if self.password.content.value == self.confirm_password.content.value and len(self.password.content.value) >= 5:
-                user_instance = {
-                    "email": self.email.content.value,
-                    "username": self.username.content.value,
-                    "password": self.password.content.value,
-                    # Add wallets for Eth, Stx, and FLOW
-                    "account_no": str(random.randrange(1_000_000_000_000_000, 2_000_000_000_000_000))
-                }
-                if self.page.client_storage.contains_key("users"):
-                    # Adding new users  
-                    user_data = self.page.client_storage.get("users")
-                    user_data.append(user_instance)
-                    self.page.client_storage.set("users", user_data)
+                # Capture the user
+                email = self.email.content.value
+                username = self.username.content.value
+                password = self.password.content.value
+                
+                # Call the signup_user function
+                signup_result = signup_user(email, username, password)
 
-                    # Adding accounts/wallets
-                    accounts_details = self.page.client_storage.get("wallet_address")
-                    accounts_details[self.username.content.value] = user_instance["account_no"]
-                    self.page.client_storage.set("wallet_address", accounts_details)
+                if signup_result.get("success"):
+                    # Registration successful, provide a success screen 
+                    self.page.go("/signup/success")
+                    # TODO: handle access token
                 else:
-                    self.page.client_storage.set("users", [user_instance])
-                    self.page.client_storage.set("wallet_address", {self.username.content.value : user_instance["account_no"]})
+                    # Handle failed signup 
+                    error_message = signup_result.get("message", "Registraion failed, please try again")
+            else:
+                pass
+                # TODO: Handle errors
+        else:
+            pass
+            # TODO: Handle errors
 
-                print(self.page.client_storage.get("users"))
-                print(self.page.client_storage.get("wallet_address"))
-                self.page.go("/signup/success")
+    
+                # if self.page.client_storage.contains_key("users"):
+                #     # Adding new users  
+                #     user_data = self.page.client_storage.get("users")
+                #     user_data.append(user_instance)
+                #     self.page.client_storage.set("users", user_data)
+
+                #     # Adding accounts/wallets 
+                #     # Need to add to db
+                #     accounts_details = self.page.client_storage.get("wallet_address")
+                #     accounts_details[self.username.content.value] = user_instance["account_no"]
+                #     self.page.client_storage.set("wallet_address", accounts_details)
+                # else:
+                #     self.page.client_storage.set("users", [user_instance])
+                #     self.page.client_storage.set("wallet_address", {self.username.content.value : user_instance["account_no"]})
+
+                # print(self.page.client_storage.get("users"))
+                # print(self.page.client_storage.get("wallet_address"))
+                # self.page.go("/signup/success")
 
     def build(self):
         self.back_arrow=Container(

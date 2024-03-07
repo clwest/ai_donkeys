@@ -7,11 +7,16 @@ class Login(UserControl):
         self.page = page
         super().__init__()
 
-    def home(self, event):
+    def home(self, e):
         self.page.go("/")
 
-    def login(self, event):
-        self.page.go("/dashboard")
+    def login(self, e):
+        if self.username.content.value != "" and self.password.content.value != "":
+            if self.page.client_storage.contains_key("users"):
+                user_data = self.page.client_storage.get("users")
+                for user in user_data:
+                    if user["username"] == self.username.content.value and user["password"] == self.password.content.value:
+                        self.page.go("/dashboard")
         
     def build(self):
         self.back_arrow = Container(
@@ -43,10 +48,12 @@ class Login(UserControl):
                 src = LOGIN_IMAGE_URL
             )
         )
-        self.email_label = Text("Email", size = 14, color= colors.WHITE, weight= FontWeight.W_300)
+
+        self.username_label = Text("Username", size = 14, color= colors.WHITE, weight= FontWeight.W_300)
+
         self.password_label = Text("Enter Password", size = 14, color= colors.WHITE, weight= FontWeight.W_300)
         
-        self.email = Container(
+        self.username = Container(
             bgcolor= colors.WHITE,
             border_radius= 10,
             content= TextField(
@@ -99,8 +106,8 @@ class Login(UserControl):
                     ]
                 ),
                 self.image,
-                self.email_label,
-                self.email,
+                self.username_label,
+                self.username,
                 self.password_label,
                 self.password,
                 self.login_btn

@@ -20,6 +20,9 @@ class DashBoard(UserControl):
     def to_security(self, e):
         self.page.go("/security")
 
+    def account_information(self,e):
+        self.page.go("/account-information")
+
     def chatbot(self, e):
         self.page.go("/chatbot")
     
@@ -312,7 +315,7 @@ class DashBoard(UserControl):
                 self.top_row,
                 self.total_balance,
                 self.expenses,
-                self.option,
+                self.options,
                 self.nav_bar
             ]
         )
