@@ -56,7 +56,7 @@ class TransactionHistory(UserControl):
                 spacing=90,
                 controls=[
                     Container(
-                        col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                        col={"xs": 4},
                         width=90,
                         border_radius=10,
                         content=IconButton(
@@ -66,7 +66,7 @@ class TransactionHistory(UserControl):
                         )
                     ),
                     Container(
-                        col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                        col={"xs": 4},
                         width=90,
                         border_radius=10,
                         gradient=LinearGradient(

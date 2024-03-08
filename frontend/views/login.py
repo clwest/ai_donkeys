@@ -11,13 +11,21 @@ class Login(UserControl):
     def home(self, e):
         self.page.go("/")
 
+    # TODO: Still need to add error handling and error messages
     def login(self, e):
         if self.username.content.value != "" and self.password.content.value != "":
             username = self.username.content.value
             password = self.password.content.value
 
             login_result = login_user(username, password)
+           
             if login_result.get("success"):
+                jwt_token = login_result.get("token")
+                username = login_result.get("username")
+                
+                # Saving the JWT and username in session storage
+                self.page.session.set("jwt_token", jwt_token)
+                self.page.session.set("username", username)
                 self.page.go("/dashboard")
             else:
                 error_message = login_result.get("message", "Login failed, please try again")
@@ -63,6 +71,7 @@ class Login(UserControl):
             bgcolor= colors.WHITE,
             border_radius= 10,
             content= TextField(
+                color=colors.BLACK,
                 border= InputBorder.NONE,
                 cursor_color= colors.BLACK
             )

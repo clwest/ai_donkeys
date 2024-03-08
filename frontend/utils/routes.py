@@ -9,6 +9,7 @@ from views.transfer import Transfer
 from views.transfer_success import TransferSuccess
 from views.security import Security
 from views.settings import AccountInformation
+from views.chatbot import Chatbot
 
 def router(page: Page):
 
@@ -40,6 +41,12 @@ def router(page: Page):
         "/dashboard" : View(
             page.route,
             [DashBoard(page)],
+            bgcolor= colors.BLACK,
+            padding= 0
+        ),
+        "/chatbot" : View(
+            page.route,
+            [Chatbot(page)],
             bgcolor= colors.BLACK,
             padding= 0
         ),

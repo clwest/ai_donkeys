@@ -22,7 +22,7 @@ class DashBoard(UserControl):
 
     def account_information(self,e):
         self.page.go("/account-information")
-
+    
     def chatbot(self, e):
         self.page.go("/chatbot")
     
@@ -173,7 +173,7 @@ class DashBoard(UserControl):
         self.options = ResponsiveRow(
             controls=[
                 Container(
-                    col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                    col={"xs": 4},
                     alignment=alignment.center,
                     content=Column(
                         alignment=MainAxisAlignment.CENTER,
@@ -204,7 +204,7 @@ class DashBoard(UserControl):
         self.options.controls.extend(
             [
                 Container(
-                    col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                    col={"xs": 4},
                     on_click=self.transfer,
                     alignment=alignment.center,
                     content=Column(
@@ -223,7 +223,7 @@ class DashBoard(UserControl):
                     )
                 ),
                 Container(
-                    col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                    col={"xs": 4},
                     alignment=alignment.center,
                     content=Column(
                         alignment=MainAxisAlignment.CENTER,
@@ -248,7 +248,7 @@ class DashBoard(UserControl):
 
         for option in OPTIONS:
             option_container = Container(
-                col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                col={"xs": 4},
                 alignment=alignment.center,
                 content=Column(
                     alignment=MainAxisAlignment.CENTER,
@@ -279,7 +279,7 @@ class DashBoard(UserControl):
                 spacing=90,
                 controls=[
                     Container(
-                        col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                        col={"xs": 4},
                         width=90,
                         border_radius=10,
                         gradient=LinearGradient(
@@ -294,13 +294,24 @@ class DashBoard(UserControl):
                         )
                     ),
                     Container(
-                        col={"xs": 4, "sm": 6, "lg": 8, "xl": 10},
+                        col={"xs": 4},
                         width=90,
                         border_radius=10,
                         content=IconButton(
                             icon=icons.BAR_CHART,
                             icon_color=colors.WHITE,
                             on_click=self.transaction_history
+                        ),
+                        
+                    ),
+                    Container(
+                        col={"xs": 4},
+                        width=90,
+                        border_radius=10,
+                        content=IconButton(
+                            icon=icons.CHAT_BUBBLE_OUTLINED,
+                            icon_color=colors.WHITE,
+                            on_click=self.chatbot
                         )
                     ),
                 ]
@@ -311,7 +322,7 @@ class DashBoard(UserControl):
             alignment=MainAxisAlignment.CENTER,
             horizontal_alignment=CrossAxisAlignment.CENTER,
             spacing=30,
-            controls=[
+            controls=[               
                 self.top_row,
                 self.total_balance,
                 self.expenses,
