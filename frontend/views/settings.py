@@ -16,6 +16,9 @@ class AccountInformation(UserControl):
         self.page.go("/")
 
     def build(self):
+        active_user = self.page.session.get("username")
+
+        
         self.top = Container(
             margin=20,
             content=Row(
@@ -44,7 +47,7 @@ class AccountInformation(UserControl):
                             Container(
                                 margin=margin.only(left=30),
                                 alignment=alignment.top_right,
-                                content=CircleAvatar(bgcolor=SLATE, radius=5)
+                                content=CircleAvatar(bgcolor=custom_colors["slate"], radius=5)
                             )
                         ]
                     )
@@ -59,7 +62,7 @@ class AccountInformation(UserControl):
                 leading=CircleAvatar(
                     foreground_image_url=AVATAR_IMAGE_URL
                 ),
-                title=Text("Bob Dylan Smith", color=colors.WHITE, size=13),
+                title=Text(f"\n{active_user}", color=colors.WHITE, size=13),
                 subtitle=Text("Account Details", color=colors.GREY_400, size=12),
                 trailing=Icon(icons.ARROW_FORWARD_IOS_OUTLINED, color=colors.GREY_500)
             )

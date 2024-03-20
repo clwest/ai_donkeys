@@ -1,5 +1,5 @@
 from flet import *
-from views.onboarding import OnBoarding
+from views.landing_page import LandingPage
 from views.signup import SignUp
 from views.signup_success import SignUpSuccess
 from views.login import Login
@@ -10,13 +10,19 @@ from views.transfer_success import TransferSuccess
 from views.security import Security
 from views.settings import AccountInformation
 from views.chatbot import Chatbot
+from views.docbot import DocBot
+from views.url_reader import UrlLoader
+# from views.project_layout import ProjectLayout
+from utils.data import *
+from utils.colors import *
+
 
 def router(page: Page):
 
     return {
         "/" : View(
             page.route,
-            [OnBoarding(page)],
+            [LandingPage(page)],
             bgcolor = colors.BLACK,
             padding = 40
         ),
@@ -50,6 +56,20 @@ def router(page: Page):
             bgcolor= colors.BLACK,
             padding= 0
         ),
+        "/docbot": View(
+            page.route,
+            [DocBot(page)],
+            bgcolor=custom_colors["slate"],
+            padding=30
+        ),
+        
+        "/url-reader": View(
+            page.route,
+            [UrlLoader(page)],
+            bgcolor=custom_colors["cyan"],
+            padding=30
+        ),
+
         "/stats/transaction-history" : View(
             page.route,
             [TransactionHistory(page)],
@@ -79,5 +99,6 @@ def router(page: Page):
             [AccountInformation(page)],
             bgcolor = colors.BLACK,
             padding = 0
-        )
+        ),
+
     }

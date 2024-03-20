@@ -21,10 +21,12 @@ class Login(UserControl):
            
             if login_result.get("success"):
                 jwt_token = login_result.get("token")
+                user = login_result.get("user")
                 username = login_result.get("username")
                 
                 # Saving the JWT and username in session storage
                 self.page.session.set("jwt_token", jwt_token)
+                self.page.session.set("user", user)
                 self.page.session.set("username", username)
                 self.page.go("/dashboard")
             else:
@@ -40,20 +42,6 @@ class Login(UserControl):
                 icon_color=colors.WHITE,
                 on_click = self.home,
             ),
-        )
-
-        self.help = Container(
-            bgcolor = colors.GREY_800,
-            height= 40,
-            width= 40,
-            border_radius= 20,
-            alignment= alignment.center,
-            content= Text(
-                "?",
-                color= colors.WHITE,
-                size = 30,
-                weight= FontWeight.W_400
-            )
         )
 
         self.image = Container(
@@ -94,7 +82,7 @@ class Login(UserControl):
             content= ElevatedButton(
                 style= ButtonStyle(
                     color= colors.WHITE,
-                    bgcolor= SLATE,
+                    bgcolor=custom_colors["slate"],
                     shape=RoundedRectangleBorder(radius=10),
                 ),
                 content= Container(
@@ -116,8 +104,7 @@ class Login(UserControl):
                 Row(
                     spacing= 200,
                     controls=[
-                        self.back_arrow,
-                        self.help,
+                        self.back_arrow
                     ]
                 ),
                 self.image,

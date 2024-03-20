@@ -49,7 +49,8 @@ def login_user(username, password):
         if response.status_code in [200, 201]:
             data = response.json()
             # print(f"log in data: {data}")
-            return {"success": True, "token": data.get("access_token"), "username": data.get("user").get("username")}
+            return {"success": True, "token": data.get("access_token"),
+            "user": data.get("user"), "username": data.get("user").get("username")}
         else:
             return {"success": False, "message": "Login failed. Please try again."}
     except Exception as e:

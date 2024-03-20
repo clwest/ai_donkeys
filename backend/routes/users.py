@@ -111,15 +111,15 @@ class LoginAPI(MethodView):
             raise  ce.InvalidCredentialsError("Invalid credentials", 401)
             
 
-        user_data = {"id": user.id, "username": user.username}
+        user_data = {"id": user.id, "username": user.username, "email": user.email, "bio": user.bio}
         
         logger.info(f"Login successful for user: {username}. Generating access token...")
         # Generate access token
         access_token = create_access_token(
-            identity={"id": user.id, "username": user.username}
+            identity={"id": user.id, "username": user.username, "email": user.email}
         )
         refresh_token = create_refresh_token(
-            identity={"id": user.id, "username": user.username}
+            identity={"id": user.id, "username": user.username, "email": user.email}
         )
         response = make_response(
             jsonify({"message": "Logged in", "access_token": access_token})

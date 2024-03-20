@@ -132,7 +132,7 @@ class SignUp(UserControl):
             content=ElevatedButton(
                 style=ButtonStyle(
                     color=colors.WHITE,
-                    bgcolor=SLATE,
+                    bgcolor=custom_colors["slate"],
                     shape=RoundedRectangleBorder(radius=10),
                 ),
                 content=Container(

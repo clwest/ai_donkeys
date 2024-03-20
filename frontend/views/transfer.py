@@ -53,7 +53,7 @@ class Transfer(UserControl):
             width = 300,
             height= 150,
             gradient= LinearGradient(
-                colors = SENDER_GRADIENT,
+                colors = mutli_color,
                 begin = alignment.top_right,
                 end = alignment.top_left
             ),
@@ -225,7 +225,7 @@ class Transfer(UserControl):
                         margin = margin.only(top=100),
                         border_radius = 10,
                         gradient = LinearGradient(
-                            colors = [colors.YELLOW, SLATE],
+                            colors = mutli_color,
                             begin = alignment.top_left,
                             end = alignment.top_right
                         ),

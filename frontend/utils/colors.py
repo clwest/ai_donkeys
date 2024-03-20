@@ -19,8 +19,15 @@ mutli_color=[
         "#708090"
 ]
 
-# Slategray
-SLATE="#708090"
+custom_colors = {
+        "slate":  "#708090",
+        "cyan": "#00FFFF",
+        "text": "#00FFFF",
+        "user_chatbox": "464b4b",
+        "ai_chatbox": "6a6e6e"
+}
+
+
 
 USER_CHATBOX="#464b4b"
 AI_CHATBOX="#6a6e6e"

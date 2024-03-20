@@ -8,16 +8,25 @@ class Chatbot(UserControl):
         super().__init__()
         self.page = page
         self.prompts = []
+        self.appname = self.page.title
 
     def home(self, e):
         self.page.go("/")
 
+    def dashboard(self, e):
+        self.page.go("/dashboard")
+
+    def transaction_history(self, e):
+        self.page.go("/stats/transaction-history")
+
+    def chatbot(self, e):
+        self.page.go("/chatbot")
         
     def new_chat(self, e):
         chat = Row(
             controls=[
-                Icon(icons.MODE_COMMENT_OUTLINED, color=USER_CHATBOX),
-                Text("New Chat", color=USER_CHATBOX)
+                Icon(icons.MODE_COMMENT_OUTLINED, color=custom_colors["user_chatbox"]),
+                Text("New Chat", color=custom_colors["user_chatbox"])
             ]
         )
         self.chat_history.controls.insert(0, chat)
@@ -38,13 +47,15 @@ class Chatbot(UserControl):
 
     def close_sidebar(self, e):
         self.left_navbar.visible = False
-        self.text_interface.col = {"lg": 2}
+        self.text_interface.col = {"lg": 12}
+        self.applogo.margin = margin.only(bottom=250, top=50, left=470)
         self.applogo.visible = True
         self.update()
 
     def open_sidebar(self, e):
         self.left_navbar.visible = True
         self.text_interface.col = {"lg": 10}
+        self.applogo.margin = margin.only(bottom=250, top=50, left=350)
         self.sidebar.visible = False
         self.update()
 
@@ -52,7 +63,7 @@ class Chatbot(UserControl):
         pass
 
     def input_on_change(self, e):
-        self.send_message_btn.icon_color = colors.WHITE if self.input.value == "" else SLATE
+        self.send_message_btn.icon_color = colors.WHITE if self.input.value == "" else custom_colors["slate"]
         self.update()
 
     def submit(self, e):
@@ -72,8 +83,8 @@ class Chatbot(UserControl):
         # Create query
         query_prompt = Container(
             alignment=alignment.top_left,
-            padding=padding.symmetric(horizontal=40, vertical=20),
-            bgcolor=USER_CHATBOX,
+            padding=padding.symmetric(horizontal=50, vertical=10),
+            bgcolor=custom_colors["user_chatbox"],
             content=Row(
                 wrap=True,
                 controls=[
@@ -95,7 +106,7 @@ class Chatbot(UserControl):
 
         response = Container(
             alignment=alignment.top_left,
-            bgcolor=AI_CHATBOX,
+            bgcolor=custom_colors["ai_chatbox"],
             padding=padding.symmetric(horizontal=30, vertical=20),
             content=Row(
                 wrap=True,
@@ -125,7 +136,7 @@ class Chatbot(UserControl):
                         icon=icons.CHAT_BUBBLE_OUTLINE_OUTLINED,
                         icon_color="black",
                         style=ButtonStyle(
-                            color=colors.WHITE54,
+                            color=custom_colors["cyan"],
                         ),
                         on_click=self.new_chat
                     )
@@ -161,7 +172,7 @@ class Chatbot(UserControl):
                 ),
                 Row(
                     controls=[
-                        Icon(icons.TABLE_ROWS_OUTLINED, color="black"),
+                        IconButton(icons.TABLE_ROWS_OUTLINED, icon_color="black", on_click=self.dashboard),
                         Text("Home", size=15, weight=FontWeight.W_300)
                     ]
                 ),
@@ -204,7 +215,7 @@ class Chatbot(UserControl):
                     controls=[
                         Text(
                             value=button[0],
-                            color=SLATE,
+                            color=custom_colors["slate"],
                             weight=FontWeight.BOLD,
                             size=15,
                             spans=[
@@ -301,7 +312,7 @@ class Chatbot(UserControl):
         )
 
         self.left_navbar = Container(
-            bgcolor=SLATE,
+            bgcolor=colors.GREY_900,
             padding=3,
             width=450,
             height=785,
@@ -319,10 +330,10 @@ class Chatbot(UserControl):
 
         self.text_interface = Container(
             height=785,
-            width=1000,
+            width=800,
             padding=padding.symmetric(vertical=35, horizontal=100),
             col={"lg": 10},
-            bgcolor=h3,
+            bgcolor=text,
             content=Column(
                 controls=[
                     self.sidebar,
@@ -334,24 +345,63 @@ class Chatbot(UserControl):
             )
         )
 
+        self.nav_bar = Container(
+            bgcolor=colors.GREY_900,
+            border_radius=border_radius.only(top_left=5, top_right=5),
+            height=90,
+            alignment=alignment.top_center,
+            padding=padding.symmetric(horizontal=30, vertical=20),
+            content=Row(
+                spacing=90,
+                controls=[
+                    Container(
+                        col={"xs": 4},
+                        width=60,
+                        border_radius=10,
+                        gradient=LinearGradient(
+                            colors=mutli_color,
+                            begin=alignment.top_right,
+                            end=alignment.top_left,
+                        ),
+                        content=IconButton(
+                            icon=icons.ACCOUNT_BALANCE,
+                            icon_color=colors.WHITE,
+                            on_click=self.dashboard
+                        )
+                    ),
+                    Container(
+                        col={"xs": 4},
+                        width=60,
+                        border_radius=10,
+                        content=IconButton(
+                            icon=icons.BAR_CHART,
+                            icon_color=colors.WHITE,
+                            on_click=self.transaction_history
+                        ),
+                        
+                    ),
+                    Container(
+                        col={"xs": 4},
+                        width=60,
+                        border_radius=10,
+                        content=IconButton(
+                            icon=icons.CHAT_BUBBLE_OUTLINED,
+                            icon_color=colors.WHITE,
+                            on_click=self.chatbot
+                        )
+                    ),
+                ]
+            )
+        )
+
+
         self.top_row = ResponsiveRow(
             alignment=MainAxisAlignment.START,
             controls=[
                 self.left_navbar,
-                self.text_interface
+                self.text_interface,
+                self.nav_bar
             ]
         )
 
         return self.top_row
-
-        # self.page_controls = Column(
-        #     alignment=MainAxisAlignment.CENTER,
-        #     horizontal_alignment=CrossAxisAlignment.CENTER,
-        #     spacing=30,
-        #     controls=[
-        #         self.left_navbar,
-        #         self.text_interface
-        #     ]
-        # )
-
-        # return self.page_controls

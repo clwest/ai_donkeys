@@ -14,7 +14,7 @@ class TransferSuccess(UserControl):
     def build(self):
         self.check_mark = Container(
             padding= 5,
-            bgcolor= SLATE,
+            bgcolor= custom_colors["slate"],
             border_radius= 35,
             height= 70,
             width = 70,
@@ -64,7 +64,7 @@ class TransferSuccess(UserControl):
                             on_click = self.transfer,         
                             style= TextStyle(
                                 size = 15,
-                                color= colors.SLATE,
+                                color=custom_colors["slate"],
                                 weight=FontWeight.W_500,
                                 ),
                             )

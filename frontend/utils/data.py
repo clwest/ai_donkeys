@@ -46,7 +46,7 @@ OPTIONS = [
     (icons.CURRENCY_EXCHANGE, "Exchange"),
     (icons.ACCOUNT_BALANCE_WALLET_OUTLINED, "Payments"),
     (icons.CREDIT_CARD_ROUNDED, "Credits"),
-    (icons.CARD_GIFTCARD, "Plans"),
+    (icons.CARD_GIFTCARD, "Projects"),
     (icons.PRICE_CHANGE_OUTLINED, "Overdraft"),
     (icons.GRID_VIEW, "More"),
 ]

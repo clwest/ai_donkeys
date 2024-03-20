@@ -30,7 +30,7 @@ class Security(UserControl):
                     Container(
                         alignment=alignment.center,
                         border_radius=10,
-                        bgcolor=SLATE,
+                        bgcolor=custom_colors["slate"],
                         padding=5,
                         on_click=self.dashboard,
                         content=Text("update", color=colors.WHITE, size=15, weight=FontWeight.W_400)

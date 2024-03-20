@@ -25,7 +25,7 @@ class SignUpSuccess(UserControl):
         )
         self.check_mark = Container(
             padding=5,
-            bgcolor=SLATE,
+            bgcolor=custom_colors["slate"],
             border_radius=35,
             height=70,
             width=70,
@@ -58,7 +58,7 @@ class SignUpSuccess(UserControl):
                     TextSpan(
                         text="\nLogin Page",
                         style=TextStyle(
-                            color=SLATE
+                            color=custom_colors["slate"]
                         ),
                         on_click=self.login
                     )
@@ -69,7 +69,7 @@ class SignUpSuccess(UserControl):
             margin=10,
             content=Text(
                 "Chat with us",
-                color=SLATE,
+                color=custom_colors["slate"],
                 size=14,
                 weight=FontWeight.W_500,
                 text_align=TextAlign.CENTER

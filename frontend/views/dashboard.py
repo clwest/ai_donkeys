@@ -1,6 +1,9 @@
 from flet import *
 from utils.data import *
 from utils.colors import *
+# from components.sidebar import Sidebar
+from services.data_store import DataStore
+# from services.user_services import user_info
 
 class DashBoard(UserControl):
 
@@ -22,14 +25,25 @@ class DashBoard(UserControl):
 
     def account_information(self,e):
         self.page.go("/account-information")
-    
+
     def chatbot(self, e):
         self.page.go("/chatbot")
     
-    def boards(self, e):
-        self.page.go("/boards")
+    def docbot(self, e):
+        self.page.go("/docbot")
+    
+
+    def did_mount(self):
+        user_data = self.page.session.get("user")
+        username = user_data['username']
+        print(f"{username} has logged in at did_mount")
+
     
     def build(self):
+
+        users_data = self.page.session.get("users")
+        active_user = self.page.session.get("username")
+
         self.settings = Container(
             alignment=alignment.center,
             border_radius=10,
@@ -62,7 +76,7 @@ class DashBoard(UserControl):
                 Container(
                     margin=margin.only(left=30),
                     alignment=alignment.top_right,
-                    content=CircleAvatar(bgcolor=SLATE, radius=5)
+                    content=CircleAvatar(bgcolor=custom_colors["slate"], radius=5)
                 )
             ]
         )
@@ -75,6 +89,7 @@ class DashBoard(UserControl):
                     self.settings,
                     self.profile_avatar,
                     self.notifications
+
                 ]
             )
         )
@@ -86,7 +101,7 @@ class DashBoard(UserControl):
             text_align=TextAlign.CENTER,
             spans=[
                 TextSpan(
-                    text = "\n$23,980",
+                    text = f"\nWelcome {active_user}",
                     style=TextStyle(
                         size=30,
                         weight=FontWeight.BOLD,
@@ -94,7 +109,15 @@ class DashBoard(UserControl):
                     )
                 ),
                 TextSpan(
-                    text=".30",
+                    text = f"\n4,760",
+                    style=TextStyle(
+                        size=30,
+                        weight=FontWeight.BOLD,
+                        color=colors.WHITE
+                    )
+                ),
+                TextSpan(
+                    text=" STX",
                     style=TextStyle(
                         size=30,
                         weight=FontWeight.W_300,
@@ -189,7 +212,7 @@ class DashBoard(UserControl):
                                     spacing=0,
                                     controls=[
                                         Image(src=BACK_ARROW_IMAGE_URL),
-                                        Image(FORWARD_ARROW_IMAGE_URL)
+                                        Image(src=FORWARD_ARROW_IMAGE_URL)
                                     ]
                                 ),
                                 on_click=self.transfer,
@@ -280,7 +303,7 @@ class DashBoard(UserControl):
                 controls=[
                     Container(
                         col={"xs": 4},
-                        width=90,
+                        width=60,
                         border_radius=10,
                         gradient=LinearGradient(
                             colors=mutli_color,
@@ -295,18 +318,18 @@ class DashBoard(UserControl):
                     ),
                     Container(
                         col={"xs": 4},
-                        width=90,
+                        width=60,
                         border_radius=10,
                         content=IconButton(
                             icon=icons.BAR_CHART,
                             icon_color=colors.WHITE,
-                            on_click=self.transaction_history
+                            on_click=self.docbot
                         ),
                         
                     ),
                     Container(
                         col={"xs": 4},
-                        width=90,
+                        width=60,
                         border_radius=10,
                         content=IconButton(
                             icon=icons.CHAT_BUBBLE_OUTLINED,
