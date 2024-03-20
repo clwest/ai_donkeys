@@ -19,6 +19,7 @@ from schemas.blogs import *
 from langchain_utils.agents.content_creator import generate_content
 import helpers.custom_exceptions as ce
 import helpers.helper_functions as hf
+# import helpers.blog_helpers as bh
 from factory.app_factory import jwt
 
 load_dotenv()
@@ -36,7 +37,8 @@ post_schema = PostSchema()
 class GetAllPostsAPI(MethodView):
     def get(self):
         posts = Post.query.all()
-        return jsonify([post.serialize() for post in posts]), 200
+        post_schema = PostSchema(many=True)
+        return jsonify(post_schema.dump(posts)), 200
 
 
 # Create a new blog post
@@ -55,16 +57,13 @@ class CreatePostAPI(MethodView):
 
         title = validated_data.get("title")
         logging.info(f"Title from Blog post: {title}")
-        content = validated_data.get("content")
-        # logging.info(f"Details from Blog Post: {content}")
 
-        # Generate Content
-        generated_content = generate_content(user_id, f"{title}. {content}", index_name)
-        logging.info(f"Generated Content: {generate_content}")
-        # Create a new post
-        validated_data["content"] = generated_content
+        # Automatically generate the slug from the title
+        # slug = generate_slug(title)
+        # validated_data["slug"] = slug
+
         new_post = Post(**validated_data)
-        new_post.generate_slug(title)
+        new_post.generate_slug()
         hf.add_to_db(new_post)
         return jsonify(post_schema.dump(new_post)), 201
 
@@ -92,7 +91,7 @@ class UpdatePostAPI(MethodView):
             return jsonify(errors), 400
         for key, value in validated_data.items():
             setattr(post, key, value)
-        hf.update_db(post)
+        hf.update_db()
         return jsonify(post_schema.dump(post)), 200
 
 

@@ -75,6 +75,7 @@ def create_app():
 
     from routes.users import users_blp
     from routes.chatbot import chatbot_blp
+    from routes.blogs import blog_blp
 
     # from routes.blog import blog_blp
 
@@ -82,7 +83,7 @@ def create_app():
     app.cli.add_command(seed_db_command)
 
     # Register blueprints
-    # app.register_blueprint(blog_blp, url_prefix="/api/blog")
+    app.register_blueprint(blog_blp, url_prefix="/api/blog")
     app.register_blueprint(users_blp, url_prefix="/api/users")
     app.register_blueprint(chatbot_blp, url_prefix="/api/chatbots")
 

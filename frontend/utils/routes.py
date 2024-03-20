@@ -53,7 +53,7 @@ def router(page: Page):
         "/chatbot" : View(
             page.route,
             [Chatbot(page)],
-            bgcolor= colors.BLACK,
+            bgcolor=custom_colors["slate"],
             padding= 0
         ),
         "/docbot": View(
@@ -66,7 +66,7 @@ def router(page: Page):
         "/url-reader": View(
             page.route,
             [UrlLoader(page)],
-            bgcolor=custom_colors["cyan"],
+            bgcolor=custom_colors["slate"],
             padding=30
         ),
 

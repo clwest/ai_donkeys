@@ -6,7 +6,7 @@ class PostSchema(Schema):
     id = fields.Int(dump_only=True)  # dump_only means it won't be deserialized
     user_id = fields.Str()
     title = fields.Str(required=True, validate=validate.Length(min=3, max=50))
-    slug = fields.Str(required=True, validate=validate.Length(min=3, max=250))
+    slug = fields.Str(dump_only=True) 
     content = fields.Str()
     summary = fields.Str()
     date_posted = fields.DateTime(format="%Y-%m-%dT%H:%M:%S")

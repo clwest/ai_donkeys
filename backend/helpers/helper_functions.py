@@ -192,3 +192,5 @@ def enable_pgvector_extension():
     except Exception as e:
         logger.error(f"Error enabling PGVector extension: {e}")
         raise
+
+

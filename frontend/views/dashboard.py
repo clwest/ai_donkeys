@@ -321,7 +321,7 @@ class DashBoard(UserControl):
                         width=60,
                         border_radius=10,
                         content=IconButton(
-                            icon=icons.BAR_CHART,
+                            icon=icons.PERSON_SEARCH,
                             icon_color=colors.WHITE,
                             on_click=self.docbot
                         ),
