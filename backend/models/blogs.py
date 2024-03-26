@@ -12,7 +12,7 @@ from sqlalchemy import (
     JSON,
 )
 from sqlalchemy import create_engine
-
+from sqlalchemy import event
 from sqlalchemy.orm import relationship
 from sqlalchemy.dialects.postgresql import ARRAY, UUID
 from sqlalchemy.sql import func
@@ -46,29 +46,32 @@ class Post(db.Model):
         secondary=post_categories_table,
         back_populates="posts",
     )
-    tag = relationship(
+    tags = relationship(
         "Tag",
         secondary=post_tags_table,
         back_populates="posts",
     )
  
     def generate_slug(self):
-        # Method to generate a unique slug for a post
-        slug = self.title.lower()
-        # Replace non-word characters
-        slug = re.sub(r"\W+", "-", slug)
+        if not target.slug:
+            # Method to generate a unique slug for a post
+            slug = self.title.lower()
+            # Replace non-word characters
+            slug = re.sub(r"\W+", "-", slug)
 
-        # Check for uniqueness
-        original_slug = slug
-        counter = 1
-        while True:
-            existing_post = Post.query.filter_by(slug=original_slug).first()
-            if not existing_post:
-                break
-            slug = f"{original_slug}-{counter}"
-            counter += 1
+            # Check for uniqueness
+            original_slug = slug
+            counter = 1
+            while True:
+                existing_post = Post.query.filter_by(slug=original_slug).first()
+                if not existing_post:
+                    break
+                slug = f"{original_slug}-{counter}"
+                counter += 1
 
-        self.slug = slug
+            target.slug = original_slug
+
+    event.listen(Post, 'before_insert', generate_slug)
 
     def update_view_count(self):
         self.view_count += 1

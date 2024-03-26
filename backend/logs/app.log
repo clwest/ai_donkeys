@@ -728,3 +728,4 @@ RuntimeError: You must call `@jwt_required()` or `verify_jwt_in_request()` befor
 2024-03-26 09:45:49,243 INFO: Attempting to validate password for user: fool [in users.py:108]
 2024-03-26 09:45:49,333 INFO: Login successful for user: fool. Generating access token... [in users.py:116]
 2024-03-26 09:45:49,334 INFO: Printing the response: <Response 479 bytes [200 OK]> [in users.py:129]
+2024-03-26 09:58:02,253 INFO: PGVector extension enabled successfully. [in helper_functions.py:191]
