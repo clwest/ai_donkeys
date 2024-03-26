@@ -58,10 +58,6 @@ class CreatePostAPI(MethodView):
         title = validated_data.get("title")
         logging.info(f"Title from Blog post: {title}")
 
-        # Automatically generate the slug from the title
-        # slug = generate_slug(title)
-        # validated_data["slug"] = slug
-
         new_post = Post(**validated_data)
         new_post.generate_slug()
         hf.add_to_db(new_post)

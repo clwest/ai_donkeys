@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from pprint import pprint
 
 import spacy
-from services.logging_config import root_logger as logger
+# from services.logging_config import root_logger as logger
 from operator import itemgetter
 from langchain.schema import StrOutputParser
 from langchain_openai import ChatOpenAI

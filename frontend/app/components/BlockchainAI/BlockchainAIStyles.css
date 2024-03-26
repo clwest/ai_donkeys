@@ -1,0 +1,22 @@
+
+
+.chat-message p {
+  margin-bottom: 1rem;
+}
+
+.chat-message pre {
+  background-color: #282c34;
+  color: #abb2bf;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+.chat-message code {
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 0.5em;
+}

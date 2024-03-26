@@ -1,0 +1,21 @@
+.ticker-container {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker {
+  display: inline-block;
+  white-space: nowrap;
+  animation: scroll 120s linear infinite;
+} 
+
+@keyframes scroll {
+  0% {
+    transform: translateX(20%);
+   
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
