@@ -19,13 +19,14 @@ export default function BlogPage() {
           throw new Error("Error in fetching posts");
         }
         const data = await response.json();
-        console.log(data);
+        console.log(`Blog data is ${JSON.stringify(data, null, 2)}`);
         setPosts(data);
       } catch (error) {
         console.error(error);
       }
     };
     fetchPosts();
+    console.log(fetchPosts())
   }, []);
 
   return (
@@ -42,7 +43,7 @@ export default function BlogPage() {
               </h2>
             </Link>
             <h3 className="text-xl font-bold text-center text-cyan-500">
-              By: {post.author}
+              By: {post.username}
             </h3>
             <p>{post.summary}</p>
             {/* Link to post here*/}

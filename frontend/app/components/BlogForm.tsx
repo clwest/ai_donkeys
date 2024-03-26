@@ -48,7 +48,13 @@ const PostPage: React.FC<PostPageProps> = ({ post, onSave }) => {
           type="submit"
           className="w-full p-2 mb-2 bg-slate-600 text-cyan-600 text-shadow font-extrabold text-lg rounded"
         >
-          Generate Post
+          Publish  
+        </button>
+        <button
+          type="submit"
+          className="w-full p-2 mb-2 bg-slate-600 text-cyan-600 text-shadow font-extrabold text-lg rounded"
+        >
+          Save
         </button>
       </form>
     </div>

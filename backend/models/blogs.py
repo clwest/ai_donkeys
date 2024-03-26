@@ -53,25 +53,23 @@ class Post(db.Model):
     )
  
     def generate_slug(self):
-        if not target.slug:
-            # Method to generate a unique slug for a post
-            slug = self.title.lower()
-            # Replace non-word characters
-            slug = re.sub(r"\W+", "-", slug)
+        # Method to generate a unique slug for a post
+        slug = self.title.lower()
+        # Replace non-word characters
+        slug = re.sub(r"\W+", "-", slug)
 
-            # Check for uniqueness
-            original_slug = slug
-            counter = 1
-            while True:
-                existing_post = Post.query.filter_by(slug=original_slug).first()
-                if not existing_post:
-                    break
-                slug = f"{original_slug}-{counter}"
-                counter += 1
+        # Check for uniqueness
+        original_slug = slug
+        counter = 1
+        while True:
+            existing_post = Post.query.filter_by(slug=original_slug).first()
+            if not existing_post:
+                break
+            slug = f"{original_slug}-{counter}"
+            counter += 1
 
-            target.slug = original_slug
+        self.slug = slug
 
-    event.listen(Post, 'before_insert', generate_slug)
 
     def update_view_count(self):
         self.view_count += 1
@@ -108,7 +106,7 @@ class Tag(db.Model):
     posts = relationship(
         "Post",
         secondary=post_tags_table,
-        back_populates="tag",
+        back_populates="tags",
     )
 
     __table_args__ = (

@@ -19,7 +19,6 @@ from schemas.blogs import *
 from langchain_utils.agents.content_creator import generate_content
 import helpers.custom_exceptions as ce
 import helpers.helper_functions as hf
-# import helpers.blog_helpers as bh
 from factory.app_factory import jwt
 
 load_dotenv()
@@ -33,10 +32,14 @@ post_schema = PostSchema()
 
 
 # Get all blog posts
+
 @blog_blp.route("/posts", methods=["GET"])
 class GetAllPostsAPI(MethodView):
     def get(self):
         posts = Post.query.all()
+        for post in posts:
+            print(f"Printing post data: {post}")
+            print(f"Printing from blog routes {post.user}")
         post_schema = PostSchema(many=True)
         return jsonify(post_schema.dump(posts)), 200
 
@@ -50,6 +53,7 @@ class CreatePostAPI(MethodView):
         user_id = user_identity["id"]
 
         data = request.json
+        data["user_id"] = user_id
         logging.info(f"Data from blog post: {data}")
         validated_data, errors = hf.validate_data(post_schema, data)
         if errors:

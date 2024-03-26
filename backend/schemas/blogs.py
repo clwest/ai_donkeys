@@ -1,4 +1,5 @@
 from marshmallow import Schema, fields, validate, validates, ValidationError
+
 from models.blogs import Tag, Category
 
 
@@ -12,6 +13,7 @@ class PostSchema(Schema):
     date_posted = fields.DateTime(format="%Y-%m-%dT%H:%M:%S")
     is_draft = fields.Boolean()
     view_count = fields.Int()
+    
 
     created_at = fields.DateTime(dump_only=True)
     updated_at = fields.DateTime(dump_only=True)
@@ -19,6 +21,13 @@ class PostSchema(Schema):
     # Nested schemao
     tags = fields.List(fields.Nested("TagSchema"), required=False)
     categories = fields.List(fields.Nested("CategorySchema"), required=False)
+
+    # Method for the username
+    username = fields.Method("get_username")
+
+    def get_username(self, obj):
+        print(f"Debug - User object: {obj.user}")
+        return obj.user.username if obj.user else None
 
 
 class TagSchema(Schema):

@@ -90,6 +90,9 @@ class User(db.Model):
         if 'password' in kwargs:
             self.password = generate_password_hash(kwargs['password'], method='scrypt')
 
+    def __repr__(self):
+        return f'<User {self.username}>'
+
 
 
 class BlacklistedToken(db.Model):
